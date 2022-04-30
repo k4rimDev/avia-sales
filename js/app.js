@@ -307,9 +307,7 @@
                 $("#hotelDate2").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#hotelDateTo2" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
                 $("#flyingDate1").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#flyingDateTo1" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
                 $("#flyingDate2").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#flyingDateTo2" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
-
                 $("#flyingDate3").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#flyingDateTo3" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
-                $("#flyingDate4").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#flyingDateTo4" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
                 $(".js-show-more").on("click", function (e) {
                     e.preventDefault();
                     var t = $(this);
@@ -418,4 +416,7 @@
                     j.css({ opacity: 0 });
                 });
         });
+
+
+        let submitBtn = document.querySelector('#')
 })();
