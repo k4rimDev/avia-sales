@@ -420,3 +420,10 @@
 
         let submitBtn = document.querySelector('#')
 })();
+
+
+fetch('https://www.omdbapi.com/?t=the%20platform&apikey=49ffab34')
+    .then(data => data.json())
+    .then(
+        dt => console.log(dt)
+    )
