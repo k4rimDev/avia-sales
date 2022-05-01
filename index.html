@@ -40,9 +40,9 @@
   <body class="load">
     <div class="progress-load js-progress-load"></div>
     <div class="demo-panel bx4dp d-none d-sm-block" id="demoSwitcher">
-      <div class="container">
+      <!-- <div class="container">
         <div class="demo-panel__toggle btn btn-light text-primary shadow-sm js-panel-toggle"><i class="fa fa-cog"></i></div>
-      </div>
+      </div> -->
       <div class="demo-panel__content bg-light pt-3">
         <div class="container">
           <div class="row flex-nowrap">
@@ -83,7 +83,7 @@
                     <div class="help-block">Your password must be at least 6 characters long</div>
                   </div>
                   <div class="d-flex flex-wrap justify-content-between align-items-center">
-                    <button class="btn btn-secondary btn--round mr-2 mb-2" type="submit">sign in
+                    <button class="btn btn-secondary btn--round mr-2 mb-2" id="loginBtn" type="submit">sign in
                     </button>
                     <p class="mb-2"><a class="js-toggle-account" href="#" data-account="forgot">Forgot your password?</a></p>
                   </div>
@@ -419,96 +419,24 @@
                   </li> -->
                 </ul>
                 <div class="tab-content">
-                  <!-- <div class="tab-pane active show" id="tabHotel" role="tabpanel">
-                    <form class="search-hotels__form" action="#" method="GET" data-toggle="validator">
-                      <div class="row">
-                        <div class="form-group col-12 col-md-6 col-lg-4 col-xl-3">
-                          <label class="label-text">Place or name of the hotel</label>
-                          <div class="d-flex"><span class="select-local d-flex"><i class="icon icon-label mr-2 text-secondary"></i>
-                              <select class="select2 js-select-locality" name="search_hotel" data-placeholder="Enter here a place or hotel">
-                                <option value="Resort Spa Hotel">Resort Spa Hotel</option>
-                                <option value="Black Pearl">Black Pearl</option>
-                                <option value="Marsol">Marsol</option>
-                                <option value="Macronissos Village Bungalows">Macronissos Village Bungalows</option>
-                                <option value="Iberotel Aquamarine Resort">Iberotel Aquamarine Resort</option>
-                              </select></span>
-                          </div>
-                        </div>
-                        <div class="form-group col-12 col-md-6 col-lg-4 col-xl-4 d-flex justify-content-center">
-                          <div class="form-group-date text-nowrap text-center">
-                            <div class="d-inline-block">
-                              <label class="label-text">Check in date</label>
-                              <div class="input-date-group position-relative"><i class="mr-2 icon icon-calendar text-secondary"></i>
-                                <input class="form-control js-input-date hidden " id="hotelDate1" type="text" name="hotel_from" required="required"/>
-                                <label class="form-control date" for="hotelDate1"></label>
-                              </div>
-                            </div><i class="bullet mx-4"></i>
-                            <div class="d-inline-block">
-                              <label class="label-text">Check out date</label>
-                              <div class="input-date-group position-relative"><i class="mr-2 icon icon-calendar text-secondary"></i>
-                                <input class="form-control js-input-date hidden " id="hotelDateTo1" type="text" name="hotel_to" required="required"/>
-                                <label class="form-control date" for="hotelDateTo1"></label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group col-12 col-lg-4 col-xl-3 d-flex justify-content-center">
-                          <div class="mx-2">
-                            <label class="label-text">Rooms</label>
-                            <div class="qty">
-                              <input class="js-qty" type="text" name="rooms" value="2" data-mask="00"/>
-                            </div>
-                          </div>
-                          <div class="mx-2">
-                            <label class="label-text">Adults</label>
-                            <div class="qty">
-                              <input class="js-qty" type="text" name="adults" value="2" data-mask="00"/>
-                            </div>
-                          </div>
-                          <div class="mx-2">
-                            <label class="label-text">Children</label>
-                            <div class="qty">
-                              <input class="js-qty" type="text" name="children" value="2" data-mask="00"/>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group col-12 col-xl-2 d-flex">
-                          <button class="btn btn-secondary btn--round align-self-center" type="submit">Search
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div> -->
                   <div class="tab-pane" id="tabFlight" role="tabpanel">
-                    <form class="search-hotels__form" action="#" method="POST">
+                    <form class="search-hotels__form" action="#" method="POST" id="roundedWayForm">
                       <div class="row">
                         <div class="col-12 col-xl-6">
                           <div class="row">
                             <div class="form-group col-12 col-sm-6 border-0">
                               <label class="label-text">Flying from</label>
                               <div class="d-flex"><span class="select-local d-flex"><i class="icon icon-label mr-2 text-secondary"></i>
-                                  <select class="select2 js-select-locality" name="flying_from" data-placeholder="Orly airport">
-                                    <option value="Gatwick Airport">Gatwick Airport</option>
-                                    <option value="Saskatoon John G. Diefenbaker International Airport">Saskatoon John G. Diefenbaker International Airport</option>
-                                    <option value="London Airport">London Airport</option>
-                                    <option value="Fort St John Airport">Fort St John Airport</option>
-                                    <option value="Rimouski Airport">Rimouski Airport</option>
-                                    <option value="Sioux Lookout Airport">Sioux Lookout Airport</option>
-                                    <option value="Whale Cove Airport">Whale Cove Airport</option>
+                                  <select class="select2 js-select-locality" name="flying_from" data-placeholder="Flying From"  id="fromRounded">
+                                   
                                   </select></span>
                               </div>
                             </div>
                             <div class="form-group col-12 col-sm-6 border-0">
                               <label class="label-text">Flying to</label>
                               <div class="d-flex"><span class="select-local d-flex"><i class="icon icon-label mr-2 text-secondary"></i>
-                                  <select class="select2 js-select-locality" name="flying_to" data-placeholder="Orly airport">
-                                    <option value="Gatwick Airport">Gatwick Airport</option>
-                                    <option value="Saskatoon John G. Diefenbaker International Airport">Saskatoon John G. Diefenbaker International Airport</option>
-                                    <option value="London Airport">London Airport</option>
-                                    <option value="Fort St John Airport">Fort St John Airport</option>
-                                    <option value="Rimouski Airport">Rimouski Airport</option>
-                                    <option value="Sioux Lookout Airport">Sioux Lookout Airport</option>
-                                    <option value="Whale Cove Airport">Whale Cove Airport</option>
+                                  <select class="select2 js-select-locality" name="flying_to" data-placeholder="Flying To" id="toRounded">
+                                    
                                   </select></span>
                               </div>
                             </div>
@@ -547,11 +475,11 @@
                           </div>
                           <div class= "">
                             <div class="choice d-flex justify-content-center align-items-center">
-                              <input class="js-choice" type="radio" name="choise" id="economic" checked value="economic"/>
+                              <input class="js-choice" type="checkbox" name="choise" id="economic" checked value="0"/>
                               <span class="label-text ml-2">Economic</span>
                             </div>
                             <div class="choice d-flex justify-content-center align-items-center">
-                              <input class="js-choice" type="radio" name="choise" id='buisness' value="buisness"/>
+                              <input class="js-choice" type="checkbox" name="choise" id='buisness' value="1"/>
                               <span class="label-text align-self-center ml-2">Buisness</span>
                             </div>
                           </div>
@@ -566,35 +494,23 @@
 
 
                   <div class="tab-pane active show" id="tabFlightOneWay" role="tabpanel">
-                    <form class="search-hotels__form" action="#" method="POST" onSubmit="return false;">
+                    <form class="search-hotels__form" action="#" method="POST" id="oneWayForm">
                       <div class="row">
                         <div class="col-12 col-xl-6">
                           <div class="row">
                             <div class="form-group col-12 col-sm-6 border-0">
                               <label class="label-text">Flying from</label>
                               <div class="d-flex"><span class="select-local d-flex"><i class="icon icon-label mr-2 text-secondary"></i>
-                                  <select class="select2 js-select-locality" id='fromOneWay' name="flying_from" data-placeholder="Orly airport">
-                                    <option value="Gatwick Airport">Gatwick Airport</option>
-                                    <option value="Saskatoon John G. Diefenbaker International Airport">Saskatoon John G. Diefenbaker International Airport</option>
-                                    <option value="London Airport">London Airport</option>
-                                    <option value="Fort St John Airport">Fort St John Airport</option>
-                                    <option value="Rimouski Airport">Rimouski Airport</option>
-                                    <option value="Sioux Lookout Airport">Sioux Lookout Airport</option>
-                                    <option value="Whale Cove Airport">Whale Cove Airport</option>
+                                  <select class="select2 js-select-locality" id='fromOneWay' name="flying_from" data-placeholder="Flying from">
+                                    
                                   </select></span>
                               </div>
                             </div>
                             <div class="form-group col-12 col-sm-6 border-0">
                               <label class="label-text">Flying to</label>
                               <div class="d-flex"><span class="select-local d-flex"><i class="icon icon-label mr-2 text-secondary"></i>
-                                  <select class="select2 js-select-locality" id='toOneWay' name="flying_to" data-placeholder="Orly airport">
-                                    <option value="Gatwick Airport">Gatwick Airport</option>
-                                    <option value="Saskatoon John G. Diefenbaker International Airport">Saskatoon John G. Diefenbaker International Airport</option>
-                                    <option value="London Airport">London Airport</option>
-                                    <option value="Fort St John Airport">Fort St John Airport</option>
-                                    <option value="Rimouski Airport">Rimouski Airport</option>
-                                    <option value="Sioux Lookout Airport">Sioux Lookout Airport</option>
-                                    <option value="Whale Cove Airport">Whale Cove Airport</option>
+                                  <select class="select2 js-select-locality" id='toOneWay' name="flying_to" data-placeholder="Flying to">
+                                 
                                   </select></span>
                               </div>
                             </div>
@@ -609,14 +525,6 @@
                                 <label class="form-control date" for="flyingDate3"></label>
                               </div>
                             </div>
-                            <!-- <i class="bullet mx-4"></i>
-                            <div class="d-inline-block">
-                              <label class="label-text">Returning</label>
-                              <div class="input-date-group position-relative"><i class="mr-2 icon icon-calendar text-secondary"></i>
-                                <input class="form-control js-input-date hidden " id="flyingDateTo1" type="text" name="returning" required="required"/>
-                                <label class="form-control date" for="flyingDateTo1"></label>
-                              </div>
-                            </div> -->
                           </div>
                         </div>
                         <div class="form-group col-12 col-sm-5 col-md-3 col-xl-2 d-flex justify-content-center flex-wrap">
@@ -634,140 +542,22 @@
                           </div>
                           <div class= "">
                             <div class="choice d-flex justify-content-center align-items-center">
-                              <input class="js-choice" type="radio" name="choise" id="economic" checked value="economic"/>
+                              <input class="js-choice" type="checkbox" name="choise" id="economic" checked value="0"/>
                               <span class="label-text ml-2">Economic</span>
                             </div>
                             <div class="choice d-flex justify-content-center align-items-center">
-                              <input class="js-choice" type="radio" name="choise" id='buisness' value="buisness"/>
+                              <input class="js-choice" type="checkbox" name="choise" id='buisness' value="1"/>
                               <span class="label-text align-self-center ml-2">Buisness</span>
                             </div>
                           </div>
                         </div>
                         <div class="form-group col-12 col-md-3 col-xl-12 d-flex">
-                          <button class="btn btn-secondary btn--round align-self-center" onclick="getData();" id="flightOneWayBtn" type="submit" data-bs-toggle="modal" data-bs-target="#resultModal"><a href="flights.html">Search</a>  
+                          <button class="btn btn-secondary btn--round align-self-center" id="flightOneWayBtn" type="submit" data-bs-toggle="modal" data-bs-target="#resultModal"><a href="flights.html">Search</a>  
                           </button>
                         </div>
                       </div>
                     </form>
                   </div>
-
-
-                  
-
-                  <!-- <div class="tab-pane" id="tabFlightHotel" role="tabpanel">
-                    <form class="search-hotels__form" action="#" method="GET" data-toggle="validator">
-                      <div class="row">
-                        <div class="col-12 col-sm-12 mb-2">
-                          <div class="row">
-                            <div class="form-group col-12 col-lg-4 border-0">
-                              <label class="label-text">Place or name of the hotel</label>
-                              <div class="d-flex"><span class="select-local d-flex"><i class="icon icon-label mr-2 text-secondary"></i>
-                                  <select class="select2 js-select-locality" name="search_hotel" data-placeholder="Enter here a place or hotel">
-                                    <option value="Resort Spa Hotel">Resort Spa Hotel</option>
-                                    <option value="Black Pearl">Black Pearl</option>
-                                    <option value="Marsol">Marsol</option>
-                                    <option value="Macronissos Village Bungalows">Macronissos Village Bungalows</option>
-                                    <option value="Iberotel Aquamarine Resort">Iberotel Aquamarine Resort</option>
-                                  </select></span>
-                              </div>
-                            </div>
-                            <div class="form-group col-12 col-sm-6 col-lg-4 border-0">
-                              <label class="label-text">Flying from</label>
-                              <div class="d-flex"><span class="select-local d-flex"><i class="icon icon-label mr-2 text-secondary"></i>
-                                  <select class="select2 js-select-locality" name="flying_from" data-placeholder="Orly airport">
-                                    <option value="Gatwick Airport">Gatwick Airport</option>
-                                    <option value="Saskatoon John G. Diefenbaker International Airport">Saskatoon John G. Diefenbaker International Airport</option>
-                                    <option value="London Airport">London Airport</option>
-                                    <option value="Fort St John Airport">Fort St John Airport</option>
-                                    <option value="Rimouski Airport">Rimouski Airport</option>
-                                    <option value="Sioux Lookout Airport">Sioux Lookout Airport</option>
-                                    <option value="Whale Cove Airport">Whale Cove Airport</option>
-                                  </select></span>
-                              </div>
-                            </div>
-                            <div class="form-group col-12 col-sm-6 col-lg-4 border-0">
-                              <label class="label-text">Flying to</label>
-                              <div class="d-flex"><span class="select-local d-flex"><i class="icon icon-label mr-2 text-secondary"></i>
-                                  <select class="select2 js-select-locality" name="flying_to" data-placeholder="Orly airport">
-                                    <option value="Gatwick Airport">Gatwick Airport</option>
-                                    <option value="Saskatoon John G. Diefenbaker International Airport">Saskatoon John G. Diefenbaker International Airport</option>
-                                    <option value="London Airport">London Airport</option>
-                                    <option value="Fort St John Airport">Fort St John Airport</option>
-                                    <option value="Rimouski Airport">Rimouski Airport</option>
-                                    <option value="Sioux Lookout Airport">Sioux Lookout Airport</option>
-                                    <option value="Whale Cove Airport">Whale Cove Airport</option>
-                                  </select></span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="col-12 col-sm-12 col-lg-8">
-                          <div class="row">
-                            <div class="form-group col-12 col-md-6 d-flex justify-content-center mb-3">
-                              <div class="form-group-date text-nowrap text-center">
-                                <div class="d-inline-block">
-                                  <label class="label-text">Departing</label>
-                                  <div class="input-date-group position-relative"><i class="mr-2 icon icon-calendar text-secondary"></i>
-                                    <input class="form-control js-input-date hidden " id="flyingDate2" type="text" name="departing" required="required"/>
-                                    <label class="form-control date" for="flyingDate2"></label>
-                                  </div>
-                                </div><i class="bullet mx-4"></i>
-                                <div class="d-inline-block">
-                                  <label class="label-text">Returning</label>
-                                  <div class="input-date-group position-relative"><i class="mr-2 icon icon-calendar text-secondary"></i>
-                                    <input class="form-control js-input-date hidden " id="flyingDateTo2" type="text" name="returning" required="required"/>
-                                    <label class="form-control date" for="flyingDateTo2"></label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="form-group col-12 col-md-6 d-flex justify-content-center">
-                              <div class="form-group-date text-nowrap text-center">
-                                <div class="d-inline-block">
-                                  <label class="label-text">Check in date</label>
-                                  <div class="input-date-group position-relative"><i class="mr-2 icon icon-calendar text-secondary"></i>
-                                    <input class="form-control js-input-date hidden " id="hotelDate2" type="text" name="hotel_date_from" required="required"/>
-                                    <label class="form-control date" for="hotelDate2"></label>
-                                  </div>
-                                </div><i class="bullet mx-4"></i>
-                                <div class="d-inline-block">
-                                  <label class="label-text">Check out date</label>
-                                  <div class="input-date-group position-relative"><i class="mr-2 icon icon-calendar text-secondary"></i>
-                                    <input class="form-control js-input-date hidden " id="hotelDateTo2" type="text" name="hotel_date_to" required="required"/>
-                                    <label class="form-control date" for="hotelDateTo2"></label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group col-12 col-lg-4 d-flex justify-content-center">
-                          <div class="mx-2">
-                            <label class="label-text">Rooms</label>
-                            <div class="qty">
-                              <input class="js-qty" type="text" name="rooms" value="2" data-mask="00"/>
-                            </div>
-                          </div>
-                          <div class="mx-2">
-                            <label class="label-text">Adults</label>
-                            <div class="qty">
-                              <input class="js-qty" type="text" name="adults" value="2" data-mask="00"/>
-                            </div>
-                          </div>
-                          <div class="mx-2">
-                            <label class="label-text">Children</label>
-                            <div class="qty">
-                              <input class="js-qty" type="text" name="children" value="2" data-mask="00"/>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="form-group col-lg-12 d-flex">
-                          <button class="btn btn-secondary btn--round align-self-center" type="submit">Search
-                          </button>
-                        </div>
-                      </div>
-                    </form>
-                  </div> -->
                 </div>
               </div>
             </div>

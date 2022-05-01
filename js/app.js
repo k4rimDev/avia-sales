@@ -303,11 +303,11 @@
                 });
             var u = $(".js-qty");
             u.spinner({ min: 0 }),
-                $("#hotelDate1").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#hotelDateTo1" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
-                $("#hotelDate2").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#hotelDateTo2" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
-                $("#flyingDate1").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#flyingDateTo1" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
-                $("#flyingDate2").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#flyingDateTo2" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
-                $("#flyingDate3").flatpickr({ dateFormat: "d M", defaultDate: ["2016-10-20"] }),
+                $("#hotelDate1").flatpickr({ dateFormat: "d-M", plugins: [new rangePlugin({ input: "#hotelDateTo1" })], disableMobile: !0, defaultDate: ["2022-05-02", "2022-05-02"] }),
+                $("#hotelDate2").flatpickr({ dateFormat: "d-M", plugins: [new rangePlugin({ input: "#hotelDateTo2" })], disableMobile: !0, defaultDate: ["2022-05-02", "2022-05-02"] }),
+                $("#flyingDate1").flatpickr({ dateFormat: "Y-m-d", plugins: [new rangePlugin({ input: "#flyingDateTo1" })], disableMobile: !0, defaultDate: ["2022-05-02", "2022-05-02"] }),
+                $("#flyingDate2").flatpickr({ dateFormat: "Y-m-d", plugins: [new rangePlugin({ input: "#flyingDateTo2" })], disableMobile: !0, defaultDate: ["2022-05-02", "2022-05-02"] }),
+                $("#flyingDate3").flatpickr({ dateFormat: "Y-m-d", defaultDate: ["2016-10-20"] }),
                 $(".js-show-more").on("click", function (e) {
                     e.preventDefault();
                     var t = $(this);
@@ -418,117 +418,176 @@
         });
 
 
-        let flightRoundedBtn = document.querySelector('#flightRoundedBtn')
-        let flightOneWayBtn = document.querySelector('#flightOneWayBtn')
 
-        // fetch('https://ticketbook.azurewebsites.net/api/FromCountries')
-        //     // .then(data => data.json())
-        //     .then(
-        //         dt => console.log(dt)
-        //     )
-
-        // fetch('https://ticketbook.azurewebsites.net/api/FromCountries')
-        //     .then(data => {
-        //     return data.json();
-        //     })
-        //     .then(post => {
-        //     console.log(post.title);
-        //     });
-
-        // let headers = new Headers();
-
-        // headers.append('Content-Type', 'application/json');
-        // headers.append('Accept', 'application/json');
-      
-        // headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
-        // headers.append('Access-Control-Allow-Credentials', 'true');
-      
-        // headers.append('GET', 'POST', 'OPTIONS');
-        //     fetch('https://ticketbook.azurewebsites.net/api/FromCountries', {
-        //         //mode: 'no-cors',
-        //         credentials: 'include',
-        //         method: 'POST',
-        //         headers: headers
-        //       })
-        //       .then(response => response.json())
-        //       .then(json => console.log(json))
-
-        flightOneWayBtn.addEventListener('click', (e)=>{
-            let adultsCount = document.querySelector("#adultsCount").value
-            let childrenCount = document.querySelector("#childrenCount")
-            let economic = document.querySelector("#economic")
-            let buisness = document.querySelector("#buisness")
-            let flyingDate = document.querySelector("#flyingDate3").value
-            let toOneWay = document.querySelector("#toOneWay")
-            let fromOneWay = document.querySelector("#fromOneWay")
+        // Api
 
 
-            console.log(flyingDate)
+        function getCountryTo(way){
+            fetch('https://ticketbook.azurewebsites.net/api/FromCountries').then(function(response) {
+            return response.json();
+            }).then(function(data) {
+                for(let i = 0; i < data.length; i++){
+                    let fromState = ''
+                    // console.log(data)
+                    fromState = data[i].countryName + " " + data[i].name;
+                    way.innerHTML += `<option data-id=${data[i].id} id="toCountry">${fromState}</option>`;
+                }
+                
+            }).catch(function() {
+                console.log("Error!!");
+            });
+        }
 
-
-
-        })
-
-        function getData(e){
-            e.preventDefault();
+        function getCountryFrom(way){
+            fetch('https://ticketbook.azurewebsites.net/api/DestinationCountries').then(function(response) {
+            return response.json();
+            }).then(function(data) {
+                for(let i = 0; i < data.length; i++){
+                    let fromState = ''
+                    fromState = data[i].countryName + ' ' + data[i].name;
+                    way.innerHTML += `<option data-id=${data[i].id} id="toCountry">${fromState}</option>`;
+                }
+                
+            }).catch(function() {
+                console.log("Error!!");
+            });
         }
 
 
 
-        // const url = "https://content.guardianapis.com/search";
-        // const key = "b9f853ec-08fe-4072-8f1a-bd4b696d0391";
+        
 
-        // fetch(`${url}?api-key=${key}`)
-        // .then(res => res.json())
-        // .then(data => {
-        //     let news = data.response.results;
-        //     for(let i = 0; i < 5; i++){
-        //         const listItem = document.createElement("li");
-        //         listItem.innerHTML = `
-        //         <p>${news[i].webTitle}</p>
-        //         <a target="_blank" href="${news[i].webUrl}">Click</a>`
-        //         list.appendChild(listItem)
-        //     }
-        // })
 
-        // function getData(){
-        //     let query = inp.value;
-        //     fetch(`${url}?q=${query}&api-key=${key}`)
-        //         .then(res => res.json())
-        //         .then(data => {
-        //             list.textContent = ""
-        //             let news = data.response.results;
-        //             for(let i = 0; i < 5; i++){
-        //                 const listItem = document.createElement("li");
-        //                 listItem.innerHTML = `
-        //                 <p>${news[i].webTitle}</p>
-        //                 <a target="_blank" href="${news[i].webUrl}">Click</a>`
-        //                 list.appendChild(listItem)
-        //             }
-        //         })
+        let flightRoundedBtn = document.querySelector('#flightRoundedBtn')
+        let flightOneWayBtn = document.querySelector('#flightOneWayBtn')
+
+        let flyingToListRounded = document.querySelector('#toRounded')
+        let flyingFromListRounded = document.querySelector('#fromRounded')
+
+        let toOneWay = document.querySelector("#toOneWay")
+        let fromOneWay = document.querySelector("#fromOneWay")
+
+        let economic = document.getElementsByName("choise")[0]
+        let buisness = document.getElementsByName("choise")[1]
+
+        // console.log(economic)
+
+        let adultsCount = document.querySelector("#adultsCount").value
+        let childrenCount = document.querySelector("#childrenCount").value
+
+
+        let status = 0;
+
+
+        function getstatus(value){
+            alert(value)
+        }
+
+        flightOneWayBtn.addEventListener('click', (e)=>{
+            e.preventDefault();
+
+            if ($('#buisness').is(':checked')) { status = 1}
+    
+
+            
+
+            console.log(status)
+
+            let flyingDate = document.querySelector("#flyingDate3")
+
+            if (buisness.checked == true){
+                status = 1;
+            }
+
+            fromOneWay = fromOneWay.options[fromOneWay.selectedIndex].getAttribute('data-id')
+            toOneWay = toOneWay.options[toOneWay.selectedIndex].getAttribute('data-id')
+
+            
+            // postData(fromCountryId, childrenCount, status, flyingDate, toOneWay, fromOneWay); 
+        })
+
+        let loginBtn = document.querySelector('#loginBtn')
+
+        console.log()
+
+        // console.log({'fromStateId': flyingFromListRounded.options[flyingFromListRounded.selectedIndex].getAttribute('data-id'), 'destStateId': flyingToListRounded.options[flyingToListRounded.selectedIndex].getAttribute('data-id'), 'departureDate': document.querySelector("#flyingDate1").value, 'returnDate': document.querySelector("#flyingDate1").value, 'class': 0, 'adultCount': adultsCount, 'childCount': childrenCount})
+
+        flightRoundedBtn.addEventListener('click', (e)=>{
+            e.preventDefault();
+
+            if (buisness.checked == true){
+                status = 1;
+            }
+
+            flyingFromListRounded = flyingFromListRounded.options[flyingFromListRounded.selectedIndex].getAttribute('data-id');
+            flyingToListRounded = flyingToListRounded.options[flyingToListRounded.selectedIndex].getAttribute('data-id');
+            console.log({'fromStateId': flyingFromListRounded, 'destStateId': flyingToListRounded, 'departureDate': document.getElementsByName("departing")[0].value, 'returnDate': document.getElementsByName("returning")[0].value, 'class': 0, 'adultCount': adultsCount, 'childCount': childrenCount})
+
+            fetch("https://ticketbook.azurewebsites.net/api/Flights",
+            {
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                method: "POST",
+                
+                body: JSON.stringify({'fromStateId': flyingFromListRounded, 'destStateId': flyingToListRounded, 'departureDate': document.querySelector("#flyingDate1").value, 'returnDate': document.querySelector("#flyingDate1").value, 'class': 0, 'adultCount': adultsCount, 'childCount': childrenCount})
+            })
+            .then(function(res){ console.log(res) })
+            .catch(function(res){ console.log(res) })
+
+        })
+
+
+
+
+        loginBtn.addEventListener('click',(e)=>{
+            e.preventDefault();
+
+            fetch("https://ticketbook.azurewebsites.net/account/login",
+                {
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        "email": "admin@booking.com",
+                        "password": "admin123"
+                      })
+                })
+                .then(function(res){ console.log(res) })
+                .catch(function(res){ console.log(res) })
+        
+                        
+        })
+
+
+                
+
+
+
+
+
+        getCountryTo(flyingFromListRounded);
+        getCountryFrom(flyingToListRounded);
+
+        getCountryTo(toOneWay);
+        getCountryFrom(fromOneWay);
+    
+
+
+
+
+
+        // function postData(fromCountryId, childrenCount, status, flyingDate, toOneWay, fromOneWay){
+
+        // fetch(`https://ticketbook.azurewebsites.net/api/Flights?fromStateId=${fromCountryId}&departureDate=${flyingDate}&class=${status}&adultCount=${adultsCount}&childCount=${childrenCount}`).then(function(request){
+        //         return request.json();
+        //     }).then(function(data){
+        //         console.log(data)
+        //     })
         // }
-
-        // inp.addEventListener("keyup", function(event) {
-        //     if(event.key == "Enter"){
-        //         getData()
-        //     }
-        // })
-
-        // btn.addEventListener("click", () => {
-        //     getData()
-        // })
-
-
-
-
-        // <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        //     <div class="modal-dialog">
-        //         <div class="modal-content">
-
-        //         </div>
-        //     </div>
-        // </div>
-
 
 })();
 
