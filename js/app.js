@@ -307,7 +307,7 @@
                 $("#hotelDate2").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#hotelDateTo2" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
                 $("#flyingDate1").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#flyingDateTo1" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
                 $("#flyingDate2").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#flyingDateTo2" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
-                $("#flyingDate3").flatpickr({ dateFormat: "d M", plugins: [new rangePlugin({ input: "#flyingDateTo3" })], disableMobile: !0, defaultDate: ["2016-10-20", "2016-11-04"] }),
+                $("#flyingDate3").flatpickr({ dateFormat: "d M", defaultDate: ["2016-10-20"] }),
                 $(".js-show-more").on("click", function (e) {
                     e.preventDefault();
                     var t = $(this);
@@ -418,12 +418,119 @@
         });
 
 
-        let submitBtn = document.querySelector('#')
+        let flightRoundedBtn = document.querySelector('#flightRoundedBtn')
+        let flightOneWayBtn = document.querySelector('#flightOneWayBtn')
+
+        // fetch('https://ticketbook.azurewebsites.net/api/FromCountries')
+        //     // .then(data => data.json())
+        //     .then(
+        //         dt => console.log(dt)
+        //     )
+
+        // fetch('https://ticketbook.azurewebsites.net/api/FromCountries')
+        //     .then(data => {
+        //     return data.json();
+        //     })
+        //     .then(post => {
+        //     console.log(post.title);
+        //     });
+
+        // let headers = new Headers();
+
+        // headers.append('Content-Type', 'application/json');
+        // headers.append('Accept', 'application/json');
+      
+        // headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+        // headers.append('Access-Control-Allow-Credentials', 'true');
+      
+        // headers.append('GET', 'POST', 'OPTIONS');
+        //     fetch('https://ticketbook.azurewebsites.net/api/FromCountries', {
+        //         //mode: 'no-cors',
+        //         credentials: 'include',
+        //         method: 'POST',
+        //         headers: headers
+        //       })
+        //       .then(response => response.json())
+        //       .then(json => console.log(json))
+
+        flightOneWayBtn.addEventListener('click', (e)=>{
+            let adultsCount = document.querySelector("#adultsCount").value
+            let childrenCount = document.querySelector("#childrenCount")
+            let economic = document.querySelector("#economic")
+            let buisness = document.querySelector("#buisness")
+            let flyingDate = document.querySelector("#flyingDate3").value
+            let toOneWay = document.querySelector("#toOneWay")
+            let fromOneWay = document.querySelector("#fromOneWay")
+
+
+            console.log(flyingDate)
+
+
+
+        })
+
+        function getData(e){
+            e.preventDefault();
+        }
+
+
+
+        // const url = "https://content.guardianapis.com/search";
+        // const key = "b9f853ec-08fe-4072-8f1a-bd4b696d0391";
+
+        // fetch(`${url}?api-key=${key}`)
+        // .then(res => res.json())
+        // .then(data => {
+        //     let news = data.response.results;
+        //     for(let i = 0; i < 5; i++){
+        //         const listItem = document.createElement("li");
+        //         listItem.innerHTML = `
+        //         <p>${news[i].webTitle}</p>
+        //         <a target="_blank" href="${news[i].webUrl}">Click</a>`
+        //         list.appendChild(listItem)
+        //     }
+        // })
+
+        // function getData(){
+        //     let query = inp.value;
+        //     fetch(`${url}?q=${query}&api-key=${key}`)
+        //         .then(res => res.json())
+        //         .then(data => {
+        //             list.textContent = ""
+        //             let news = data.response.results;
+        //             for(let i = 0; i < 5; i++){
+        //                 const listItem = document.createElement("li");
+        //                 listItem.innerHTML = `
+        //                 <p>${news[i].webTitle}</p>
+        //                 <a target="_blank" href="${news[i].webUrl}">Click</a>`
+        //                 list.appendChild(listItem)
+        //             }
+        //         })
+        // }
+
+        // inp.addEventListener("keyup", function(event) {
+        //     if(event.key == "Enter"){
+        //         getData()
+        //     }
+        // })
+
+        // btn.addEventListener("click", () => {
+        //     getData()
+        // })
+
+
+
+
+        // <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        //     <div class="modal-dialog">
+        //         <div class="modal-content">
+
+        //         </div>
+        //     </div>
+        // </div>
+
+
 })();
 
 
-fetch('https://www.omdbapi.com/?t=the%20platform&apikey=49ffab34')
-    .then(data => data.json())
-    .then(
-        dt => console.log(dt)
-    )
+
