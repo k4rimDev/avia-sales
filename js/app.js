@@ -531,15 +531,20 @@
 
         })
 
+        let roundedResultArray = []
+
         flightRoundedBtn.addEventListener('click', (e)=>{
             e.preventDefault();
 
             flightStatus2 = flightStatus2.options[flightStatus2.selectedIndex].getAttribute('value');
 
+            flyingToListRounded = document.querySelector('#toRounded')
+            flyingFromListRounded = document.querySelector('#fromRounded')
+
 
             flyingFromListRounded = flyingFromListRounded.options[flyingFromListRounded.selectedIndex].getAttribute('data-id');
             flyingToListRounded = flyingToListRounded.options[flyingToListRounded.selectedIndex].getAttribute('data-id');
-            console.log({'fromStateId': flyingFromListRounded, 'destStateId': flyingToListRounded, 'departureDate': document.getElementsByName("departing")[0].value, 'returnDate': document.getElementsByName("returning")[0].value, 'class': flightStatus2, 'adultCount': adultsCount, 'childCount': childrenCount})
+            // console.log({'fromStateId': flyingFromListRounded, 'destStateId': flyingToListRounded, 'departureDate': document.getElementsByName("departing")[0].value, 'returnDate': document.getElementsByName("returning")[0].value, 'class': flightStatus2, 'adultCount': adultsCount, 'childCount': childrenCount})
 
             fetch("https://ticketbook.azurewebsites.net/api/Flights",
             {
@@ -551,10 +556,17 @@
                 
                 body: JSON.stringify({'fromStateId': parseInt(flyingFromListRounded), 'destStateId': parseInt(flyingToListRounded), 'departureDate': document.getElementsByName("departing")[0].value, 'returnDate': document.getElementsByName("returning")[0].value, 'class': parseInt(flightStatus2), 'adultCount': parseInt(adultsCount), 'childCount': parseInt(childrenCount)})
             })
-            .then(function(res){ console.log(res) })
+            .then(function(res){console.log(res)})
+            // .then(function (response) { console.log(response)  })
             .catch(function(res){ console.log(res) })
 
-            (window.location = "flights.html")
+
+            console.log(roundedResultArray)
+
+            // setTimeout(function(){
+            //     (window.location = "flights.html")
+            // }, 10000)
+
 
 
         })
@@ -567,7 +579,7 @@
 
         loginBtn.addEventListener('click',(e)=>{
             e.preventDefault();
-
+            console.log(email[0].value, password[0].value)
             fetch("https://ticketbook.azurewebsites.net/account/login",
                 {
                     headers: {
@@ -576,8 +588,8 @@
                     },
                     method: "POST",
                     body: JSON.stringify({
-                        "email": email[0],
-                        "password": password[0]
+                        "email": email[0].valaue,
+                        "password": password[0].value
                       })
                 })
                 .then(function(res){ console.log(res) })
