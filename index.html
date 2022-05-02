@@ -132,7 +132,7 @@
                     <div class="help-block">Please accept our policy</div>
                   </div>
                   <p class="mb-4 d-flex justify-content-center justify-content-sm-start">
-                    <button class="btn btn-secondary btn--round" type="submit">Create Account</button>
+                    <button class="btn btn-secondary btn--round" id="registerBtn" type="submit">Create Account</button>
                   </p>
                   <div class="d-inline-block my-2 w-100">
                     <div class="social-sign">
@@ -473,16 +473,17 @@
                               <input class="js-qty" type="text" name="children" value="2" data-mask="00"/>
                             </div>
                           </div>
-                          <div class= "">
-                            <div class="choice d-flex justify-content-center align-items-center">
-                              <input class="js-choice" type="checkbox" name="choise" id="economic" checked value="0"/>
-                              <span class="label-text ml-2">Economic</span>
-                            </div>
-                            <div class="choice d-flex justify-content-center align-items-center">
-                              <input class="js-choice" type="checkbox" name="choise" id='buisness' value="1"/>
-                              <span class="label-text align-self-center ml-2">Buisness</span>
-                            </div>
-                          </div>
+                          <select id= "flightStatus1" class="form-select">
+                            <option value="0" selected>
+                              <p>Economic</p>
+                            </option>
+                            <option value="1">
+                              <p>Business</p>
+                            </option>
+                            <option value="2">
+                              Both
+                            </option>
+                          </select>
                         </div>
                         <div class="form-group col-12 col-md-3 col-xl-12 d-flex">
                           <button class="btn btn-secondary btn--round align-self-center" id="flightRoundedBtn" type="submit">Search
@@ -540,16 +541,17 @@
                               <input class="js-qty" id="childrenCount" type="text" name="children" value="2" data-mask="00"/>
                             </div>
                           </div>
-                          <div class= "">
-                            <div class="choice d-flex justify-content-center align-items-center">
-                              <input class="js-choice" type="checkbox" name="choise" id="economic" checked value="0"/>
-                              <span class="label-text ml-2">Economic</span>
-                            </div>
-                            <div class="choice d-flex justify-content-center align-items-center">
-                              <input class="js-choice" type="checkbox" name="choise" id='buisness' value="1"/>
-                              <span class="label-text align-self-center ml-2">Buisness</span>
-                            </div>
-                          </div>
+                          <select id= "flightStatus2" class="form-select">
+                            <option value="0" selected>
+                              <p>Economic</p>
+                            </option>
+                            <option value="1">
+                              <p>Business</p>
+                            </option>
+                            <option value="2">
+                              Both
+                            </option>
+                          </select>
                         </div>
                         <div class="form-group col-12 col-md-3 col-xl-12 d-flex">
                           <button class="btn btn-secondary btn--round align-self-center" id="flightOneWayBtn" type="submit" data-bs-toggle="modal" data-bs-target="#resultModal"><a href="flights.html">Search</a>  

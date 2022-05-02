@@ -307,7 +307,7 @@
                 $("#hotelDate2").flatpickr({ dateFormat: "d-M", plugins: [new rangePlugin({ input: "#hotelDateTo2" })], disableMobile: !0, defaultDate: ["2022-05-02", "2022-05-02"] }),
                 $("#flyingDate1").flatpickr({ dateFormat: "Y-m-d", plugins: [new rangePlugin({ input: "#flyingDateTo1" })], disableMobile: !0, defaultDate: ["2022-05-02", "2022-05-02"] }),
                 $("#flyingDate2").flatpickr({ dateFormat: "Y-m-d", plugins: [new rangePlugin({ input: "#flyingDateTo2" })], disableMobile: !0, defaultDate: ["2022-05-02", "2022-05-02"] }),
-                $("#flyingDate3").flatpickr({ dateFormat: "Y-m-d", defaultDate: ["2016-10-20"] }),
+                $("#flyingDate3").flatpickr({ dateFormat: "Y-m-d", defaultDate: ["2022-04-20"], disableMobile: !0 }),
                 $(".js-show-more").on("click", function (e) {
                     e.preventDefault();
                     var t = $(this);
@@ -419,6 +419,8 @@
 
 
 
+
+
         // Api
 
 
@@ -428,7 +430,6 @@
             }).then(function(data) {
                 for(let i = 0; i < data.length; i++){
                     let fromState = ''
-                    // console.log(data)
                     fromState = data[i].countryName + " " + data[i].name;
                     way.innerHTML += `<option data-id=${data[i].id} id="toCountry">${fromState}</option>`;
                 }
@@ -455,9 +456,6 @@
 
 
 
-        
-
-
         let flightRoundedBtn = document.querySelector('#flightRoundedBtn')
         let flightOneWayBtn = document.querySelector('#flightOneWayBtn')
 
@@ -467,61 +465,38 @@
         let toOneWay = document.querySelector("#toOneWay")
         let fromOneWay = document.querySelector("#fromOneWay")
 
-        let economic = document.getElementsByName("choise")[0]
-        let buisness = document.getElementsByName("choise")[1]
+        let flightStatus1 = document.querySelector('#flightStatus2')
+        let flightStatus2 = document.querySelector('#flightStatus1')
 
-        // console.log(economic)
 
         let adultsCount = document.querySelector("#adultsCount").value
         let childrenCount = document.querySelector("#childrenCount").value
 
 
-        let status = 0;
-
-
-        function getstatus(value){
-            alert(value)
-        }
-
-        flightOneWayBtn.addEventListener('click', (e)=>{
-            e.preventDefault();
-
-            if ($('#buisness').is(':checked')) { status = 1}
-    
-
-            
-
-            console.log(status)
-
-            let flyingDate = document.querySelector("#flyingDate3")
-
-            if (buisness.checked == true){
-                status = 1;
-            }
-
+        fromOneWay.addEventListener('change', (e)=>{
+            fromOneWay = document.querySelector("#fromOneWay")
             fromOneWay = fromOneWay.options[fromOneWay.selectedIndex].getAttribute('data-id')
-            toOneWay = toOneWay.options[toOneWay.selectedIndex].getAttribute('data-id')
-
-            
-            // postData(fromCountryId, childrenCount, status, flyingDate, toOneWay, fromOneWay); 
         })
 
-        let loginBtn = document.querySelector('#loginBtn')
+        toOneWay.addEventListener('change', (e)=>{
+            toOneWay = document.querySelector("#toOneWay")
+            toOneWay = toOneWay.options[toOneWay.selectedIndex].getAttribute('data-id')
+        })
 
-        console.log()
+        flightOneWayBtn.addEventListener('click', (e)=>{
+            e.preventDefault();    
 
-        // console.log({'fromStateId': flyingFromListRounded.options[flyingFromListRounded.selectedIndex].getAttribute('data-id'), 'destStateId': flyingToListRounded.options[flyingToListRounded.selectedIndex].getAttribute('data-id'), 'departureDate': document.querySelector("#flyingDate1").value, 'returnDate': document.querySelector("#flyingDate1").value, 'class': 0, 'adultCount': adultsCount, 'childCount': childrenCount})
+            flightStatus1 = document.querySelector('#flightStatus2')
 
-        flightRoundedBtn.addEventListener('click', (e)=>{
-            e.preventDefault();
 
-            if (buisness.checked == true){
-                status = 1;
-            }
+            flightStatus1 = flightStatus1.options[flightStatus1.selectedIndex].getAttribute('value')
 
-            flyingFromListRounded = flyingFromListRounded.options[flyingFromListRounded.selectedIndex].getAttribute('data-id');
-            flyingToListRounded = flyingToListRounded.options[flyingToListRounded.selectedIndex].getAttribute('data-id');
-            console.log({'fromStateId': flyingFromListRounded, 'destStateId': flyingToListRounded, 'departureDate': document.getElementsByName("departing")[0].value, 'returnDate': document.getElementsByName("returning")[0].value, 'class': 0, 'adultCount': adultsCount, 'childCount': childrenCount})
+            
+            let flyingDate = document.querySelector("#flyingDate3")
+
+            
+
+            console.log({'fromStateId': parseInt(flyingFromListRounded), 'destStateId': parseInt(flyingToListRounded), 'departureDate': flyingDate.value, 'class': parseInt(flightStatus1), 'adultCount': parseInt(adultsCount), 'childCount': parseInt(childrenCount)})
 
             fetch("https://ticketbook.azurewebsites.net/api/Flights",
             {
@@ -531,14 +506,63 @@
                 },
                 method: "POST",
                 
-                body: JSON.stringify({'fromStateId': flyingFromListRounded, 'destStateId': flyingToListRounded, 'departureDate': document.querySelector("#flyingDate1").value, 'returnDate': document.querySelector("#flyingDate1").value, 'class': 0, 'adultCount': adultsCount, 'childCount': childrenCount})
+                body: JSON.stringify({'fromStateId': parseInt(flyingFromListRounded), 'destStateId': parseInt(flyingToListRounded), 'departureDate': flyingDate.value, 'class': parseInt(flightStatus1), 'adultCount': parseInt(adultsCount), 'childCount': parseInt(childrenCount)})
             })
             .then(function(res){ console.log(res) })
             .catch(function(res){ console.log(res) })
 
+            (window.location = "flights.html")
+        })
+
+        let loginBtn = document.querySelector('#loginBtn')
+        let registerBtn = document.querySelector('#registerBtn')
+
+
+        flightStatus1.addEventListener('change', (e)=>{
+            flightStatus1 = document.querySelector('#flightStatus2')
+
+            flightStatus1 = flightStatus1.options[flightStatus1.selectedIndex].getAttribute('value');
         })
 
 
+        flightStatus2.addEventListener('change', (e)=>{
+            flightStatus2 = document.querySelector('#flightStatus1')
+            flightStatus2 = flightStatus2.options[flightStatus2.selectedIndex].getAttribute('value');
+
+        })
+
+        flightRoundedBtn.addEventListener('click', (e)=>{
+            e.preventDefault();
+
+            flightStatus2 = flightStatus2.options[flightStatus2.selectedIndex].getAttribute('value');
+
+
+            flyingFromListRounded = flyingFromListRounded.options[flyingFromListRounded.selectedIndex].getAttribute('data-id');
+            flyingToListRounded = flyingToListRounded.options[flyingToListRounded.selectedIndex].getAttribute('data-id');
+            console.log({'fromStateId': flyingFromListRounded, 'destStateId': flyingToListRounded, 'departureDate': document.getElementsByName("departing")[0].value, 'returnDate': document.getElementsByName("returning")[0].value, 'class': flightStatus2, 'adultCount': adultsCount, 'childCount': childrenCount})
+
+            fetch("https://ticketbook.azurewebsites.net/api/Flights",
+            {
+                headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+                },
+                method: "POST",
+                
+                body: JSON.stringify({'fromStateId': parseInt(flyingFromListRounded), 'destStateId': parseInt(flyingToListRounded), 'departureDate': document.getElementsByName("departing")[0].value, 'returnDate': document.getElementsByName("returning")[0].value, 'class': parseInt(flightStatus2), 'adultCount': parseInt(adultsCount), 'childCount': parseInt(childrenCount)})
+            })
+            .then(function(res){ console.log(res) })
+            .catch(function(res){ console.log(res) })
+
+            (window.location = "flights.html")
+
+
+        })
+
+
+
+        let email = document.getElementsByName('user_email');
+        let password = document.getElementsByName('user_pass')
 
 
         loginBtn.addEventListener('click',(e)=>{
@@ -552,8 +576,8 @@
                     },
                     method: "POST",
                     body: JSON.stringify({
-                        "email": "admin@booking.com",
-                        "password": "admin123"
+                        "email": email[0],
+                        "password": password[0]
                       })
                 })
                 .then(function(res){ console.log(res) })
@@ -563,10 +587,29 @@
         })
 
 
-                
+        registerBtn.addEventListener('click',(e)=>{
+            e.preventDefault();
 
+            let firstName = document.getElementsByName('user_name');
+            let lastName = document.getElementsByName('user_last_name');
 
-
+            fetch("https://ticketbook.azurewebsites.net/account/register",
+                {
+                    headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify({
+                        "firstName": firstName[0].value,
+                        "lastName": lastName[0].value,
+                        "email": email[1].value,
+                        "password": password[1].value
+                      })
+                })
+                .then(function(res){ console.log(res) })
+                .catch(function(res){ console.log(res) })                            
+        })
 
 
         getCountryTo(flyingFromListRounded);
@@ -574,20 +617,6 @@
 
         getCountryTo(toOneWay);
         getCountryFrom(fromOneWay);
-    
-
-
-
-
-
-        // function postData(fromCountryId, childrenCount, status, flyingDate, toOneWay, fromOneWay){
-
-        // fetch(`https://ticketbook.azurewebsites.net/api/Flights?fromStateId=${fromCountryId}&departureDate=${flyingDate}&class=${status}&adultCount=${adultsCount}&childCount=${childrenCount}`).then(function(request){
-        //         return request.json();
-        //     }).then(function(data){
-        //         console.log(data)
-        //     })
-        // }
 
 })();
 
